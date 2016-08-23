@@ -1,0 +1,1 @@
+angular.module("doacao-de-sangue", ["ngRoute", "ui.mask"]);

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br" ng-app="doacao-de-sangue">
+
+<head>
+
+    <title>Sistema de Doação de Sangue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!--Import angular.js-->
+    <base href="/" />
+    <script src="libs/js/angular.min.js"></script>
+    <script src="libs/js/angular-route.min.js"></script>
+
+
+    <!--Import jquey-->
+    <script src="libs/js/jquery.js"></script>
+
+    <!--Import ui-bootstrap.js-->
+    <script src="libs/js/bootstrap.min.js"></script>
+
+    <!--Import Js app-->
+    <script src="js/app.js"></script>
+
+    <!--Import bootstrap.cs-->
+    <link rel="stylesheet" href="libs/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script src="libs/js/mask.js"></script>
+
+    <!--Import Js route-->
+    <script src="js/config/routeConfig.js"></script>
+
+    <!--Import Js controller-->
+    <script src="js/controllers/doadorController.js"></script>
+    <script src="js/controllers/agendamentoController.js"></script>
+
+    <!--Import Js directives-->
+    <script src="js/directives/menu.js"></script>
+    <script src="js/directives/cabecalho.js"></script>
+
+    <!--Serviços (factorys)-->
+    <script src="js/factorys/laboratoriosAPI.js"></script>
+    <script src="js/factorys/agendamentoAPI.js"></script>
+    <script src="js/factorys/doadorAPI.js"></script>
+
+</head>
+
+<body>
+    <div ng-view></div>
+</body>
+
+</html>

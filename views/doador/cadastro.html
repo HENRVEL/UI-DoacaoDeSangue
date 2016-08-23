@@ -1,0 +1,72 @@
+<div class="container">
+
+    <cabecalho titulo="Cadastro de doadores de sangue"></cabecalho>
+
+    <div class="jumbotron">
+        <form name="cadastroDoadorForm">
+            <!--Informações de dados pessoais-->
+            <div class="container-fluid">
+                <span style="color:#0065B2">Dados Pessoais</span>
+            </div>
+            <input class="form-control" type="text" placeholder="Nome" ng-model="doador.nome" ng-required="true">
+            <input class="form-control" type="text" placeholder="Sobrenome" ng-model="doador.sobrenome" ng-required="true">
+            <input class="form-control" type="text" placeholder="Data de Nascimento" ng-model="doador.dataNascimento" ui-mask="99/99/9999" ui-mask-placeholder ui-mask-placeholder-char="_" ng-required="true">
+            <label> Sexo: </label>
+
+            <label class="radio-inline">
+                <input type="radio" name="radioSexo" value="M" ng-model="doador.sexo">Masculino
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="radioSexo" value="F" ng-model="doador.sexo">Feminino
+            </label>
+
+
+            <input class="form-control" type="text" placeholder="Cidade" ng-model="doador.cidade" ng-required="true">
+            <input class="form-control" type="text" placeholder="Estado" ng-model="doador.estado" ng-required="true">
+
+            <input class="form-control" type="text" placeholder="Bairro" ng-model="doador.bairro" ng-required="true">
+            <input class="form-control" type="text" placeholder="Complemento" ng-model="doador.complemento">
+            <input class="form-control" type="text" placeholder="CEP" ng-model="doador.cep" ui-mask="99999-999" ui-mask-placeholder ui-mask-placeholder-char="_" ng-required="true">
+            <input class="form-control" type="text" placeholder="CPF" ng-model="doador.cpf" ui-mask="999.999.999-99" ui-mask-placeholder ui-mask-placeholder-char="_" ng-required="true">
+            <input class="form-control" type="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ng-model="doador.email">
+            <input class="form-control" type="text" placeholder="Telefone Residencial" ng-model="doador.telefone" ui-mask="(999) 9999-9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+            <input class="form-control" type="text" placeholder="Celular" ng-model="doador.celular" ui-mask="(999) 9-9999-9999" ui-mask-placeholder ui-mask-placeholder-char="_">
+
+            <br />
+            <!--Informações para a Doação-->
+
+            <div class="container-fluid">
+                <span style="color:#0065B2">Informa&ccedil;&otilde;es para a Doa&ccedil;&atilde;o</span>
+            </div>
+            <br />
+
+            <div class="row" style="padding-left: 18px;">
+                <label> Tipo Sangu&iacute;neo: </label>
+                <label class="radio-inline"><input type="radio" name="radioTipoSanguineo" value="O" ng-model="doador.tipoSanguineo">O</label>
+                <label class="radio-inline"><input type="radio" name="radioTipoSanguineo" value="A" ng-model="doador.tipoSanguineo">A</label>
+                <label class="radio-inline"><input type="radio" name="radioTipoSanguineo" value="AB" ng-model="doador.tipoSanguineo">AB</label>
+                <label class="radio-inline"><input type="radio" name="radioTipoSanguineo" value="B" ng-model="doador.tipoSanguineo">B</label>
+                <label class="radio-inline"><input type="radio" name="radioTipoSanguineo" value="NS" ng-model="doador.tipoSanguineo">N&atilde;o sei</label>
+            </div>
+            <div class="row" style="padding-left: 18px;">
+                <label> Fator RH: </label>
+                <label class="radio-inline"><input type="radio" name="radioRH" value="P" ng-model="doador.fatorRH">Positivo(+)</label>
+                <label class="radio-inline"><input type="radio" name="radioRH" value="N" ng-model="doador.fatorRH">Negativo(-)</label>
+            </div>
+            <div class="row" style="padding-left: 18px;">
+                <label>J&aacute; &eacute; doador de sangue?</label>
+                <label class="radio-inline"><input type="radio" name="radioDoador" value="S" ng-model="doador.pDoador">Sim</label>
+                <label class="radio-inline"><input type="radio" name="radioDoador" value="N" ng-model="doador.pDoador">N&atilde;o</label>
+            </div>
+            <div class="row" style="padding-left: 18px;" ng-if="doador.pDoador == 'S'">
+                <input class="form-control" type="text" placeholder="Data da &uacute;ltima doa&ccedil;&atilde;o" ng-model="doador.dataUltimaDoacao" ui-mask="99/99/9999" ui-mask-placeholder ui-mask-placeholder-char="_" ng-required="true">
+            </div>
+
+            <!--btns-->
+            <button type="submit" class="btn btn-success btn-block" ng-disabled="cadastroDoadorForm.$invalid" ng-click="cadastrarDoador()">PROSSEGUIR</button>
+
+            <button type="button" class="btn btn-primary btn-block" ng-click="voltar()">VOLTAR</button>
+
+        </form>
+    </div>
+</div>

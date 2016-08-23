@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Navegação Responsiva</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+            <span class="navbar-brand" style="color:#FF0000">Sistema de doação de sangue</span>
+        </div>
+            
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-class="{active : ativo == 'Home'}"><a href="#/home">Home</a></li>
+                <li ng-class="{active : ativo == 'Doador'}"><a href="#/defaultDoador">Doador</a></li>
+                <li ng-class="{active : ativo == 'Lab'}"><a href="#">Laboratórios conveniados</a></li>
+                <li ng-class="{active : ativo == 'UniLab'}"><a href="#">Unidade hospitalar</a></li>
+                <li ng-class="{active : ativo == 'Adm'}"><a href="#">Administrativos</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
