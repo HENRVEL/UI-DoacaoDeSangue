@@ -1,50 +1,91 @@
-angular.module("doacao-de-sangue").controller("doadorController", function ($scope, $location, $rootScope, doadorAPI) {
+angular.module("doacao-de-sangue").controller("doadorController",
+    function ($scope,
+        $location,
+        $rootScope,
+        doadorAPI,
+        segurancaAPI) {
+
+        //*** Variáveis
+
+        $scope.doador = {
+            sexo: "M",
+            tipoSanguineo: "O",
+            fatorRH: "P",
+            pDoador: "N"
+
+        };
+
+        //*** Inicialização dos Métodos:
+        $scope.cadastrarDoador = cadastrarDoador;
+        $scope.cadastrarloginDoador = cadastrarloginDoador;
+        $scope.voltar = voltar;
+
+        //*** Métodos:
+
+        //Método responsável por criar o doador.
+        function cadastrarDoador() {
+
+            doadorAPI.criarDoador($scope.doador).success(function (data) {
+                alert(data);
+
+                $rootScope.doadorCpf = $scope.doador.cpf;
+
+                $location.path("/cadastroLogin");
+
+            }).error(function (data) {
+                alert("Função temporariamente indisponível!")
+            });
+        }
 
 
-    //*** Variáveis
-    
-    $scope.doador = {
-        sexo: "M",
-        tipoSanguineo: "O",
-        fatorRH: "P",
-        pDoador: "N"
+        function cadastrarloginDoador() {
 
-    };
+            carregaDoadorCPF();
+        }
 
-    //*** Inicialização dos Métodos:
-    $scope.cadastrarDoador = cadastrarDoador;
-    $scope.cadastrarloginDoador = cadastrarloginDoador;
-    $scope.voltar = voltar;
+        //Método responsável por obter o doador por cpf.
+        function carregaDoadorCPF() {
 
-    //*** Métodos:
-    function cadastrarDoador() {
-        
-        doadorAPI.criarDoador($scope.doador).success(function (data) {
-            alert(data);
+            doadorAPI.getDoadorCpf($rootScope.doadorCpf).success(function (data) {
 
-            $rootScope.doadorCpf = $scope.doador.cpf;
+                criaUsuarioSenha(data.Id);
 
-            $location.path("/cadastroLogin");
+            }).error(function (data) {
 
-        }).error(function (data) {
-            alert("Função temporariamente indisponível!")
-        });
-    }
+                console.log(data);
+                alert("Função temporariamente indisponível!")
+            });
 
+        }
 
-    function cadastrarloginDoador() {
-        
-        $location.path("/novoAgendamento");
-       
-    }
+        //Método responsável por criar o usuário e senha.
+        function criaUsuarioSenha(IdDoador) {
 
-    function voltar() {
+            $scope.login = {
+                Usuario: $scope.loginDoador.usuario,
+                Senha: $scope.loginDoador.senha,
+                TipoUsuario: "DOA",
+                IdDoador: IdDoador,
+                IdUnidadeHospitalar: null,
+                IdLaboratorio: null
+            };
 
-        $location.path("/defaultDoador");
+            segurancaAPI.criaUsuarioSenha($scope.login).success(function (data) {
+                alert(data);
 
-    }
-    
-  
+                $location.path("/novoAgendamento");
 
+            }).error(function (data) {
+                alert("Função temporariamente indisponível!")
+            });
 
-});
+        }
+
+        //Método responsável por voltar para a tela anterior.
+        function voltar() {
+
+            $location.path("/defaultDoador");
+
+        }
+
+    });
