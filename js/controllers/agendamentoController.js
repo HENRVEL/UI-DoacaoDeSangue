@@ -6,16 +6,19 @@
         agendamentoAPI,
         doadorAPI) {
 
-        //***Variaveis:
+        //***Variáveis:
         $scope.agendaEscolhida = {};
 
+        //Variável passada por controller.
+        $scope.cpf = $rootScope.doadorCpf;
 
         //*** Inicialização dos Métodos
         $scope.carregaLaboratorios = carregaLaboratorios;
         $scope.carregaAgendaLaboradorio = carregaAgendaLaboradorio;
         $scope.criarAgenda = criarAgenda;
         $scope.carregaDoadorCPF = carregaDoadorCPF;
-        $scope.cpf = $rootScope.doadorCpf;
+        $scope.voltar = voltar;
+
 
         //Inicio:
         carregaDoadorCPF();
@@ -25,6 +28,7 @@
         //Método responsável por obter o doador por cpf.
         function carregaDoadorCPF() {
             doadorAPI.getDoadorCpf($scope.cpf).success(function (data) {
+
                 $scope.IdDoador = data.Id;
 
             }).error(function (data) {
@@ -64,6 +68,7 @@
 
             var agenda = $scope.agendaEscolhida;
 
+
             var objAgendamentoDoador = {
                 IdLaboratorio: agenda.IdLaboratorio,
                 IdDoador: $scope.IdDoador,
@@ -79,6 +84,13 @@
             }).error(function (data) {
                 alert(data);
             });
+
+        }
+
+        //Método responsável por voltar para a incial do doador.
+        function voltar() {
+
+            $location.path("/defaultDoador");
 
         }
 

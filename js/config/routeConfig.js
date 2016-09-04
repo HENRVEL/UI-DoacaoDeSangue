@@ -22,6 +22,11 @@ angular.module("doacao-de-sangue").config(function($routeProvider){
           templateUrl: "views/agendamento/novoAgendamento.html",
           controller: "agendamentoController"
       });
+      
+      $routeProvider.when("/login", {
+          templateUrl: "views/login/login.html",
+          controller: "loginController"
+      });
 
      //Rota Padrão ==============================
      $routeProvider.otherwise({redirectTo:"/home"});

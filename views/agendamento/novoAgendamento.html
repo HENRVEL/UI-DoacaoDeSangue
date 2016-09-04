@@ -7,36 +7,36 @@
             </select>
             <br />
 
-            <div ng-if="listaAgendaLaboradorio.length > 0">
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                        </th>
-                        <th>
-                            Data
-                        </th>
-                        <th>
-                            Hora
-                        </th>
-                    </tr>
-                    <tr ng ng-repeat="agendaLaboradorio in listaAgendaLaboradorio">
-                        <td>
-                            <input type="radio" name="radioAgenda" ng-model="$parent.agendaEscolhida" ng-value="{{::agendaLaboradorio}}">
-                        </td>
-                        <td>
-                            <span ng-bind="agendaLaboradorio.Data"></span>
-                        </td>
-                        <td>
-                            <span ng-bind="agendaLaboradorio.Hora"></span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div ng-if="listaAgendaLaboradorio.length  == 0" class="text-center">
+            <table ng-show="listaAgendaLaboradorio.length > 0 " class="table table-striped">
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                    <th>
+                        Hora
+                    </th>
+                </tr>
+                <tr ng-repeat="agendaLaboradorio in listaAgendaLaboradorio">
+                    <td>
+                        <input type="radio" name="radioAgenda" ng-model="$parent.agendaEscolhida" ng-value="{{::agendaLaboradorio}}">
+                    </td>
+                    <td>
+                        <span ng-bind="agendaLaboradorio.Data"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="agendaLaboradorio.Hora"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <div ng-show="listaAgendaLaboradorio.length  == 0" class="text-center">
                 <span class="label label-warning">Agenda não disponivel para o laboratório selecionado </span>
             </div>
 
             <button type="submit" class="btn btn-success btn-block" ng-disabled="listaAgendaLaboradorio.length == 0" ng-click="criarAgenda()">AGENDAR</button>
+            <button type="submit" class="btn btn-primary btn-block" ng-show="listaAgendaLaboradorio.length == 0" ng-click="voltar()">VOLTAR</button>
         </form>
     </div>
 </div>

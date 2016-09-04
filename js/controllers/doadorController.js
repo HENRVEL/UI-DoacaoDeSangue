@@ -7,6 +7,8 @@ angular.module("doacao-de-sangue").controller("doadorController",
 
         //*** Variáveis
 
+        $rootScope.origem = "DOA";
+
         $scope.doador = {
             sexo: "M",
             tipoSanguineo: "O",
@@ -52,7 +54,6 @@ angular.module("doacao-de-sangue").controller("doadorController",
 
             }).error(function (data) {
 
-                console.log(data);
                 alert("Função temporariamente indisponível!")
             });
 
